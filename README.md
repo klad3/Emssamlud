@@ -1,5 +1,5 @@
 # Emssamlud
-Integrantes del Grupo 9:
+Integrantes Grupo 9:
 
     ● Ames Camayo, Daniel Vides.
     ● Cjumo Chumbes, Jose Carlos.
