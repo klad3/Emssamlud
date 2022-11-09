@@ -1,5 +1,8 @@
 from PIL import ImageTk, Image
 
+def leer_imagen(path, size):
+    return ImageTk.PhotoImage(Image.open(path).resize(size, Image.ANTIALIAS))
+
 def centrar_ventana(self,aplicacion_ancho,aplicacion_largo):
     pantall_ancho = self.winfo_screenwidth()
     pantall_largo = self.winfo_screenheight()

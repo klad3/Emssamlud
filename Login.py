@@ -29,7 +29,7 @@ class Login(Tk):
         self.cuadro_imagen = Frame(self)
         self.cuadro_imagen.pack(pady=(0, 20))
 
-        self.logo_emsamlud = PhotoImage(file='imagenes/logo_emsamlud.PNG')
+        self.logo_emsamlud = pv.leer_imagen("imagenes/logo_emsamlud.png",(215,215))
 
         Label(self.cuadro_imagen, image=self.logo_emsamlud, bg='#0EB06E').pack()
 
@@ -51,7 +51,7 @@ class Login(Tk):
         self.cuadro_usuario.config(bg='#9DE8E2')
         self.cuadro_usuario.pack(pady=(0, 20))
 
-        self.logo_usuario = PhotoImage(file='imagenes/logo_usuario.png')
+        self.logo_usuario = pv.leer_imagen("imagenes/logo_usuario.png",(55,63))
         Label(self.cuadro_usuario, image=self.logo_usuario, bg='#9DE8E2').grid(row=0, column=0)
 
         self.usuario = StringVar()
@@ -67,7 +67,7 @@ class Login(Tk):
         self.frame_password.config(bg='#9DE8E2')
         self.frame_password.pack(pady=(0, 20), padx=(9, 0))
 
-        self.logo_password = PhotoImage(file='imagenes/logo_password.png')      
+        self.logo_password = pv.leer_imagen("imagenes/logo_password.png",(55,63))
 
         Label(self.frame_password, image=self.logo_password, bg='#9DE8E2').grid(row=0, column=0, padx=(20, 0))
 
@@ -85,8 +85,8 @@ class Login(Tk):
                 self.cuadro_password.config(show='•')
                 self.boton_mostrar_password.config(image=self.imagen_mostrar_password)
                 
-        self.imagen_mostrar_password = PhotoImage(file='imagenes/logo_mostrar_password.png')
-        self.imagen_ocultar_password = PhotoImage(file='imagenes/logo_ocultar_password.png')
+        self.imagen_mostrar_password = pv.leer_imagen("imagenes/logo_mostrar_password.png",(16,18))
+        self.imagen_ocultar_password = pv.leer_imagen("imagenes/logo_ocultar_password.png",(16,18))
 
         self.boton_mostrar_password = Button(self.frame_password, image=self.imagen_mostrar_password, command=mostrar_password, bg='#9DE8E2')
         self.boton_mostrar_password.grid(row=0, column=2, sticky=SE, padx=(10, 0))
