@@ -3,10 +3,19 @@ import tkinter.ttk as ttk
 import util.centrar_ventana as utl
 
 class MenuEmssamlud(Toplevel):
+<<<<<<< HEAD
     contador_frame_inicio = 0
     contador_frame_paciente = 0
     contador_frame_personal_salud = 0
     contador_frame_agendar_cita = 0
+=======
+    contador_ventana_inicio = 0
+    contador_ventana_registro_pacientes = 0
+    contador_ventana_registro_medicos = 0
+    contador_ventana_agendar_cita = 0
+    contador_ventana_atender_cita = 0
+    contador_ventana_reportes = 0
+>>>>>>> b59de6868a89d23f69d6a9d12c15ac32ccc73abd
     def __init__(self):
         super().__init__()
         self.geometry('1200x600')
@@ -19,7 +28,11 @@ class MenuEmssamlud(Toplevel):
 
     def crear_frame_paciente(self):
         self.frame_opciones_inicio.destroy()
+<<<<<<< HEAD
         MenuEmssamlud.contador_frame_paciente += 1
+=======
+        MenuEmssamlud.contador_ventana_registro_pacientes += 1
+>>>>>>> b59de6868a89d23f69d6a9d12c15ac32ccc73abd
         
         self.frame_registro_pacientes = Frame(self.ventana_principal)
         self.frame_registro_pacientes.config(bg='#0EB06E', padx=10, pady=20)
@@ -134,7 +147,11 @@ class MenuEmssamlud(Toplevel):
 
     def crear_frame_registro_personal_salud(self):
         self.contador_abrir_calendario = 0
+<<<<<<< HEAD
         MenuEmssamlud.contador_frame_personal_salud += 1
+=======
+        MenuEmssamlud.contador_ventana_registro_medicos += 1
+>>>>>>> b59de6868a89d23f69d6a9d12c15ac32ccc73abd
         self.frame_opciones_inicio.destroy()
         self.frame_registro_personal_salud = Frame(self.ventana_principal)
         self.frame_registro_personal_salud.config(bg='#0EB06E', padx=10, pady=20)
@@ -205,9 +222,13 @@ class MenuEmssamlud(Toplevel):
 
         def tabla_medicos():
 
+<<<<<<< HEAD
             tabla_personal_salud = ttk.Treeview(self.frame_registro_personal_salud, columns=('DNI',
             'Nombres', 'Apellido paterno', 'Apellido materno', 'Teléfono', 'Fecha de nacimiento',
             'Ocupación', 'Sexo', 'Email', 'Disponibilidad'), height=3)
+=======
+            tabla_personal_salud = ttk.Treeview(self.frame_registro_personal_salud, columns=('DNI', 'Nombres', 'Apellido paterno', 'Apellido materno', 'Teléfono', 'Fecha de nacimiento', 'Ocupación', 'Sexo', 'Email', 'Disponibilidad'), height=3)
+>>>>>>> b59de6868a89d23f69d6a9d12c15ac32ccc73abd
         
             tabla_personal_salud.column('#0', width=50, anchor=CENTER)
             tabla_personal_salud.column('DNI', width=60, anchor=CENTER)
@@ -242,6 +263,7 @@ class MenuEmssamlud(Toplevel):
         tabla_medicos()
 
     def ventana_inicio(self):
+<<<<<<< HEAD
         if MenuEmssamlud.contador_frame_paciente >= 1:
             self.frame_registro_pacientes.destroy()
         if MenuEmssamlud.contador_frame_inicio >= 1:
@@ -252,6 +274,16 @@ class MenuEmssamlud(Toplevel):
             self.frame_agendar_cita.destroy()
                 
         MenuEmssamlud.contador_frame_inicio += 1
+=======
+        if MenuEmssamlud.contador_ventana_registro_pacientes >= 1:
+            self.frame_registro_pacientes.destroy()
+        if MenuEmssamlud.contador_ventana_inicio >= 1:
+            self.frame_opciones_inicio.destroy()
+        if MenuEmssamlud.contador_ventana_registro_medicos >= 1:
+            self.frame_registro_personal_salud.destroy()
+                
+        MenuEmssamlud.contador_ventana_inicio += 1
+>>>>>>> b59de6868a89d23f69d6a9d12c15ac32ccc73abd
 
         self.frame_opciones_inicio = Frame(self.ventana_principal)
         self.frame_opciones_inicio.config(bg='#0EB06E', padx=10, pady=20)
@@ -266,6 +298,7 @@ class MenuEmssamlud(Toplevel):
         self.imagen_medicos = PhotoImage(file="imagenes/logo_personal_salud.png")
         Button(self.frame_opciones_inicio, image=self.imagen_medicos, bg='#9DE8E2', cursor='hand2', command=self.crear_frame_registro_personal_salud).grid(row=1, column=1)
 
+<<<<<<< HEAD
     def crear_frame_agendar_cita(self):
         if MenuEmssamlud.contador_frame_agendar_cita >= 1:
             self.frame_agendar_cita.destroy()
@@ -329,6 +362,8 @@ class MenuEmssamlud(Toplevel):
         self.opcion_eliminar_medico = Button(self.frame_opciones_registro_medicos, text='Eliminar', cursor='hand2')
         self.opcion_eliminar_medico.grid(row=0, column=3, padx=70)
 
+=======
+>>>>>>> b59de6868a89d23f69d6a9d12c15ac32ccc73abd
     def disenno_interfaz_menu_principal(self):
         self.ventana_principal = Frame(self)
         self.ventana_principal.config(bg='#9DE8E2')
@@ -346,11 +381,15 @@ class MenuEmssamlud(Toplevel):
         self.separador_horizontal = Frame(self.ventana_principal)
         self.separador_horizontal.config(bg='#0EB06E', height=12, width=228)
         self.separador_horizontal.place(x=0, y=217)
+<<<<<<< HEAD
 
+=======
+>>>>>>> b59de6868a89d23f69d6a9d12c15ac32ccc73abd
         self.ventana_inicio()
 
     def menu_opciones(self):
         self.imagen_opcion_inicio = PhotoImage(file="imagenes/logo_inicio.png")
+<<<<<<< HEAD
         self.boton_inicio = Button(self.ventana_principal, image=self.imagen_opcion_inicio, command=self.ventana_inicio, cursor='hand2', height=38, width=98)
         self.boton_inicio.grid(row=2, column=0, columnspan=2, padx=(35, 0), sticky=N)
 
@@ -363,6 +402,24 @@ class MenuEmssamlud(Toplevel):
         self.boton_atender_cita.grid(row=4, column=0, columnspan=2, padx=(35, 0), sticky=N)
 
         self.imagen_opcion_reportes = PhotoImage(file="imagenes/logo_reportes.png")
+=======
+
+        self.boton_inicio = Button(self.ventana_principal, image=self.imagen_opcion_inicio, command=self.ventana_inicio, cursor='hand2', height=38, width=98)
+        self.boton_inicio.grid(row=2, column=0, columnspan=2, padx=(35, 0), sticky=N)
+
+        self.imagen_opcion_agendar_cita = PhotoImage(file="imagenes/logo_agendar_cita.png")
+
+        self.boton_agendar_cita = Button(self.ventana_principal, image=self.imagen_opcion_agendar_cita, cursor='hand2', height=38, width=98)
+        self.boton_agendar_cita.grid(row=3, column=0, columnspan=2, padx=(35, 0), sticky=N)
+
+        self.imagen_opcion_atender_cita = PhotoImage(file="imagenes/logo_atender_cita.png")
+
+        self.boton_atender_cita = Button(self.ventana_principal, image=self.imagen_opcion_atender_cita, cursor='hand2', height=38, width=98)
+        self.boton_atender_cita.grid(row=4, column=0, columnspan=2, padx=(35, 0), sticky=N)
+
+        self.imagen_opcion_reportes = PhotoImage(file="imagenes/logo_reportes.png")
+
+>>>>>>> b59de6868a89d23f69d6a9d12c15ac32ccc73abd
         self.boton_reportes = Button(self.ventana_principal, image=self.imagen_opcion_reportes, cursor='hand2', height=38, width=98)
         self.boton_reportes.grid(row=5, column=0, columnspan=2, padx=(35, 0), sticky=N)
 

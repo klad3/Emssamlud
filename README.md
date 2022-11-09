@@ -1,7 +1,7 @@
 # Emssamlud
 Se presenta el proyecto Emssamlud.
 
-Integrantes Grupo 9:
+## Integrantes Grupo 9:
 
     ● Ames Camayo, Daniel Vides.
     ● Cjumo Chumbes, Jose Carlos.
@@ -9,3 +9,4 @@ Integrantes Grupo 9:
     ● Ipanaque Pazo, Jorge Paul.
     ● Ramírez Alvarado, Piero Jaime.
     
+El programa se ejecuta a través del archivo "Login.py"
