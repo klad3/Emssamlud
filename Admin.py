@@ -1,27 +1,17 @@
+from tkinter import messagebox
+from tkinter import *
+
 class Admin:
-    def __init__(self, nombre, password) -> None:
-        self.__nombre = nombre
-        self.__password = password
+    def __init__(self):
+        self.__usuario = 'Admin'
+        self.__password = '123'
 
-    @property
-    def nombre(self):
-        return self.__nombre
-
-    @nombre.setter
-    def nombre(self, nombre):
-        self.__nombre = nombre
-
-    @property
-    def password(self):
-        return self.__password
-
-    @password.setter
-    def password(self, password):
-        self.__password = password
-
-    #Permite acceder al programa
     def login(self, usuario, password):
-        pass
+        self.accede_sistema = False
+        if usuario == self.__usuario and password == self.__password:
+            self.accede_sistema = True
+        else:
+            messagebox.showwarning('Advertencia', 'Usuario y/o contraseña incorrectos')
     
     # Se registra al medico en la base de datos
     def registrar_med(self, medico):
@@ -37,7 +27,7 @@ class Admin:
 
     # Se registra al enfermero en la base de datos
     def registrar_enf(self, enfermero):
-        pass    
+        pass
     
     # Se accede a la base de datos para modificar los datos del enfermero
     def modificar_enf(self, enfermero):
@@ -49,7 +39,7 @@ class Admin:
 
     # Se registra pacientes en la base de datos
     def registrar_paciente(self, paciente):
-        pass    
+        pass
     
     # Se accede a la base de datos para modificar los datos de los pacientes
     def modificar_paciente(self, paciente):
