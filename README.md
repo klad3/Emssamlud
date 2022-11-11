@@ -11,7 +11,7 @@ Se presenta el proyecto Emssamlud.
     
 ##Intrucciones
 
- ● El programa se ejecuta a través del archivo "Login.py"
- ● La persona deberá ingresar su usuario y contraseña para acceder al programa principal.
- ● El usuario tendrá las opciones de registrar paciente y personal.
- ●  A través de registrar paciente y personal, el usuario debe rellenar los campos solicitados para agregar, modificar o eliminar.
+    ● El programa se ejecuta a través del archivo "Login.py"
+    ● La persona deberá ingresar su usuario y contraseña para acceder al programa principal.
+    ● El usuario tendrá las opciones de registrar paciente y personal.
+    ● A través de registrar paciente y personal, el usuario debe rellenar los campos solicitados para agregar, modificar o eliminar.
