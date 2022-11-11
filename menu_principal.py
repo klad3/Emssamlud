@@ -1,4 +1,4 @@
-from tkinter import *
+from tkinter import Toplevel
 import tkinter.ttk as ttk
 from tkcalendar import DateEntry
 import util.centrar_ventana as pv
