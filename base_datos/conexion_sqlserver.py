@@ -9,7 +9,7 @@ class BD():
         BD.contador_conexion += 1
         if BD.contador_conexion == 1:
             try:
-                BD.conexion = pyodbc.connect('DRIVER={ODBC DRIVER 17 for SQL Server};SERVER=(local);DATABASE=Emssamlud;UID=sa;PWD=123')
+                BD.conexion = pyodbc.connect('DRIVER={ODBC DRIVER 17 for SQL Server};SERVER=(local);DATABASE=Emssamlud;UID=lucas;PWD=123')
                 print('Conexion exitosa')
 
             except Exception as ex:
