@@ -1,4 +1,5 @@
 from tkinter import messagebox
+from tkinter import *
 import base_datos.conexion_sqlserver as bd
 
 
@@ -43,7 +44,12 @@ class Admin():
     def eliminar_enf(self, enfermero):
         pass
 
-    # Se registra pacientes en la base de datos
+    def listar_datos_paciente(self):
+        self.consulta = ('SELECT * FROM Paciente')
+        self.base_datos.cursor.execute(self.consulta)
+        self.datos_paciente = self.base_datos.cursor.fetchall()
+        return self.datos_paciente
+
     def registrar_paciente(self, paciente):
         self.consulta = ("""INSERT INTO Paciente(dni, nombres, apellido_paterno, apellido_materno, telefono,
         fecha_nacimiento, direccion, sexo, email, observacion) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""")
@@ -52,17 +58,8 @@ class Admin():
                                        paciente.fecha_nacimiento,
                                        paciente.direccion, paciente.sexo, paciente.email, paciente.observacion)
         self.base_datos.cursor.commit()
-        print('Paciente agregado.')
+        print('Paciente registrado.')
 
-    def listar_datos_paciente(self):
-        self.consulta = ('SELECT * FROM Paciente')
-        self.base_datos.cursor.execute(self.consulta)
-        self.datos_paciente = self.base_datos.cursor.fetchall()
-        return self.datos_paciente
-
-        # self.finalizar_conexion_db()
-
-    # Se accede a la base de datos para modificar los datos de los pacientes
     def modificar_paciente(self, paciente, id_paciente):
         self.consulta = ("""UPDATE Paciente SET dni = ?, nombres = ?, apellido_paterno = ?,
         apellido_materno = ?, telefono = ?,
@@ -75,7 +72,6 @@ class Admin():
         self.base_datos.cursor.commit()
         print('Paciente modificado.')
 
-    # Se accede a la base de datos para eliminar paciente
     def eliminar_paciente(self, id_paciente):
         self.consulta = ('DELETE FROM Paciente WHERE id = ?')
         self.base_datos.cursor.execute(self.consulta, id_paciente)
