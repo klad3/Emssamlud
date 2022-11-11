@@ -87,15 +87,6 @@ class Admin():
         self.datos_paciente = self.base_datos.cursor.fetchall()
         return self.datos_paciente
 
-    def registrar_paciente(self, paciente):
-        self.consulta = ("""INSERT INTO Paciente(dni, nombres, apellido_paterno, apellido_materno, telefono,
-        fecha_nacimiento, direccion, sexo, email, observacion) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""")
-        self.base_datos.cursor.execute(self.consulta, paciente.dni, paciente.nombres,
-        paciente.apellido_paterno, paciente.apellido_materno, paciente.telefono, paciente.fecha_nacimiento,
-        paciente.direccion, paciente.sexo, paciente.email, paciente.observacion)
-        self.base_datos.cursor.commit()
-        print('Paciente agregado.')
-    
     def modificar_paciente(self, paciente, id_paciente): 
         self.consulta = ("""UPDATE Paciente SET dni = ?, nombres = ?, apellido_paterno = ?,
         apellido_materno = ?, telefono = ?,
