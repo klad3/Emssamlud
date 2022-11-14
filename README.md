@@ -9,6 +9,19 @@ Se presenta el proyecto Emssamlud.
     ● Ipanaque Pazo, Jorge Paul.
     ● Ramírez Alvarado, Piero Jaime.
     
+##Dependencias
+Utilizamos las siguientes librerias:
+- tkinter
+
+Para instalar dependencias en linux:
+- python -m pip install -r requirements.txt
+
+Para instalar dependencias en windows:
+- py -m pip install -r requirements.txt
+
+Para instalar las dependencias usar:
+`pip install asdfasdf`
+
 ##Intrucciones
 
     ● El programa se ejecuta a través del archivo "Login.py"

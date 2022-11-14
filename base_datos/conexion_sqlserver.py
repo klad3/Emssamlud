@@ -1,4 +1,5 @@
 import pyodbc
+import sys
 
 class BD():
     contador_conexion = 0
@@ -11,9 +12,10 @@ class BD():
             try:
                 BD.conexion = pyodbc.connect('DRIVER={ODBC DRIVER 17 for SQL Server};SERVER=(local);DATABASE=Emssamlud;UID=lucas;PWD=123')
                 print('Conexion exitosa')
-
             except Exception as ex:
                 print(ex)
+                # crear un box que muestra la alarma al usuario
+                sys.exit("error en conexion a base de datos")
 
             BD.cursor = BD.conexion.cursor()
             print('Cursor creado')

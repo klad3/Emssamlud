@@ -1,4 +1,4 @@
-from tkinter import *
+from tkinter import Toplevel
 import tkinter.ttk as ttk
 from tkcalendar import DateEntry
 import util.centrar_ventana as pv
@@ -6,9 +6,13 @@ from datetime import datetime, date
 from tkinter import messagebox
 import clases.paciente as p
 import clases.admin as adm
-import clases.personal_salud as personal
+# FIXME: cambiar nombre de clases a algo mas descriptivo
+import clases.personal as personal
+import clases.medico as medico
+import clases.enfermero as enfermero
 
 
+# FIXME: huuuuuuuuuuuuuuuuuuuuuuuuuuuge class, break it down somehow
 class MenuEmssamlud(Toplevel):
     contador_frame_inicio = 0
     contador_frame_paciente = 0
@@ -213,6 +217,7 @@ class MenuEmssamlud(Toplevel):
             except:
                 self.error_ingreso_telefono = True
 
+        # FIXME: move this method away to some class related to validations or business logic
         def registrar():
             admin = adm.Admin()
             verificar_errores_dni_telefono()
@@ -254,10 +259,13 @@ class MenuEmssamlud(Toplevel):
                                       self.cuadro_observacion.get(1.0, "end-1c").replace('\n', ' '))
 
                 admin.registrar_paciente(paciente)
+                DAOPaciente().insertar_paciente(paciente)
+
                 tabla_pacientes()
                 deshabilitar_botones()
                 deshabilitar_campos()
 
+        # FIXME: move this method away to some class related to validations or business logic
         def modificar():
             admin = adm.Admin()
             verificar_errores_dni_telefono()
@@ -673,7 +681,7 @@ class MenuEmssamlud(Toplevel):
                 messagebox.showwarning('Advertencia', f'El médico con DNI {self.dni_enfermero} ya ha sido registrado.')
             else:
                 if self.estado_especialidad == True:
-                    medico = personal.Medico(self.cuadro_dni_personal_salud.get(),
+                    medico = medico.Medico(self.cuadro_dni_personal_salud.get(),
                                              self.cuadro_nombres_personal_salud.get(),
                                              self.cuadro_apellido_paterno_personal_salud.get(),
                                              self.cuadro_apellido_materno_personal_salud.get(),
@@ -683,7 +691,7 @@ class MenuEmssamlud(Toplevel):
                     admin.registrar_med(medico)
                     tabla_medicos()
                 else:
-                    enfermero = personal.Enfermero(self.cuadro_dni_personal_salud.get(),
+                    enfermero = enfermero.Enfermero(self.cuadro_dni_personal_salud.get(),
                                                    self.cuadro_nombres_personal_salud.get(),
                                                    self.cuadro_apellido_paterno_personal_salud.get(),
                                                    self.cuadro_apellido_materno_personal_salud.get(),
@@ -732,7 +740,7 @@ class MenuEmssamlud(Toplevel):
                                        'Verifique el DNI (8 dígitos) y el número telefónico ingresados (9 dígitos).')
             else:
                 if self.estado_especialidad == True:
-                    medico = personal.Medico(self.cuadro_dni_personal_salud.get(),
+                    medico = medico.Medico(self.cuadro_dni_personal_salud.get(),
                                              self.cuadro_nombres_personal_salud.get(),
                                              self.cuadro_apellido_paterno_personal_salud.get(),
                                              self.cuadro_apellido_materno_personal_salud.get(),
@@ -742,7 +750,7 @@ class MenuEmssamlud(Toplevel):
                     admin.modificar_med(medico, self.id_medico)
                     tabla_medicos()
                 else:
-                    enfermero = personal.Enfermero(self.cuadro_dni_personal_salud.get(),
+                    enfermero = enfermero.Enfermero(self.cuadro_dni_personal_salud.get(),
                                                    self.cuadro_nombres_personal_salud.get(),
                                                    self.cuadro_apellido_paterno_personal_salud.get(),
                                                    self.cuadro_apellido_materno_personal_salud.get(),
