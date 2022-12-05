@@ -1,2 +1,0 @@
-tkinter==2.2.2
-pyodbc==2.2.2
