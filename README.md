@@ -11,20 +11,11 @@ Se presenta el proyecto Emssamlud.
     
 ##Dependencias
 Utilizamos las siguientes librerias:
-- tkinter
-
-Para instalar dependencias en linux:
-- python -m pip install -r requirements.txt
-
-Para instalar dependencias en windows:
-- py -m pip install -r requirements.txt
-
-Para instalar las dependencias usar:
-`pip install asdfasdf`
+- json
 
 ##Intrucciones
 
-    ● El programa se ejecuta a través del archivo "Login.py"
-    ● La persona deberá ingresar su usuario y contraseña para acceder al programa principal.
-    ● El usuario tendrá las opciones de registrar paciente y personal.
+    ● El programa se ejecuta a través del archivo "login.py"
+    ● El usuario administrador se encuentra en el archivo usuarios.json, el cual se encuentra en la carpeta archivos_json
+    ● El usuario administrador tendrá las opciones de administrar pacientes y personal de salud.
     ● A través de registrar paciente y personal, el usuario debe rellenar los campos solicitados para agregar, modificar o eliminar.
