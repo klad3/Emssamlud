@@ -1,4 +1,4 @@
-import validaciones.validaciones as v
+import validaciones.validaciones_main as v
 class Menu:
     def __init__(self):
         self.validaciones = v.Validacion()
