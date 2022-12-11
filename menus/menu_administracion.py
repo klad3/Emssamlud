@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 class MenuAdministracion(ABC):
     @abstractmethod
-    def menu_administracion(self):
+    def menu(self):
         pass
     
     @abstractmethod
