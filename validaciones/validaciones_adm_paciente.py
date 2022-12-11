@@ -1,5 +1,10 @@
+from .validaciones_entities import ValidacionEntities
 from datetime import date
-class ValidacionAdmPaciente:
+
+class ValidacionAdmPaciente(ValidacionEntities):
+    def __init__(self):
+        self.sexo = None
+    
     def validar_opcion_menu(self, opcion):
         try:
             int(opcion)
@@ -38,10 +43,10 @@ class ValidacionAdmPaciente:
     
     def validar_fecha_nacimiento(self, fecha):
         try:
-            a = date(int(fecha[6]+fecha[7]+fecha[8]+fecha[9]),
-                int(fecha[3]+fecha[4]),
-                int(fecha[0]+fecha[1]))
-            print(a)
+            date(int(fecha[6] + fecha[7] + fecha[8] + fecha[9]),
+                int(fecha[3] + fecha[4]),
+                int(fecha[0] + fecha[1]))
+            
             if len(fecha) == 10:
                 return True
         except:
@@ -55,6 +60,10 @@ class ValidacionAdmPaciente:
 
     def validar_sexo(self, sexo):
         if sexo.replace(' ', '').upper() == 'M' or sexo.replace(' ', '').upper() == 'F':
+            if sexo.replace(' ', '').upper() == 'M':
+                self.sexo = 'Masculino'
+            else:
+                self.sexo = 'Femenino'
             return True
         else:
             return False
@@ -67,7 +76,6 @@ class ValidacionAdmPaciente:
                 return False
             
             email_separado = email.split('@')
-
             if email_separado[0][0].replace(' ', '') == '.':
                 return False
 
@@ -79,7 +87,7 @@ class ValidacionAdmPaciente:
                 if c == '.':
                     cont_puntos += 1
 
-            if cont_puntos == 1:
+            if cont_puntos >= 1:
                 if len(email_separado[1].split('.')[1]) > 0:
                     indicador_punto_2 = True
 
@@ -89,3 +97,9 @@ class ValidacionAdmPaciente:
                 return False
         except:
             return False
+        
+    def validar_observacion(self, observacion):
+        if observacion == '':
+            return False
+        else:
+            return True

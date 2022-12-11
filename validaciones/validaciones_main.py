@@ -1,4 +1,4 @@
-class Validacion:
+class ValidacionMain:
     def validar_opcion_princ(self, opcion):
         try:
             int(opcion)
