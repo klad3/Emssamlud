@@ -1,6 +1,6 @@
 import validaciones.validaciones_main as v
-from .admin_pacientes import AdministracionPaciente
-from .admin_personal import AdministracionPersonal
+from menus.admin_pacientes import AdministracionPaciente
+from menus.admin_personal import AdministracionPersonal
 
 class Menu:
     def __init__(self):
