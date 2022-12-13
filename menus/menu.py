@@ -1,12 +1,14 @@
 import validaciones.validaciones_main as v
 from menus.admin_pacientes import AdministracionPaciente
 from menus.admin_personal import AdministracionPersonal
+from menus.admin_citas import AdministracionCita
 
 class Menu:
     def __init__(self):
         self.validaciones = v.ValidacionMain()
         self.admin_pacientes = AdministracionPaciente()
         self.admin_personal = AdministracionPersonal()
+        self.admin_citas = AdministracionCita()
     
     def menu_principal(self):
         print('-----------------Sistemas de citas médicas - Emssamlud-----------------')
@@ -22,6 +24,9 @@ class Menu:
 
         if int(self.opcion_princ) == 1:
             self.menu_administracion()
+        if int(self.opcion_princ) == 2:
+            self.admin_citas.menu()
+
     
     def menu_administracion(self):
         print('Bienvenido a la administración general.')
