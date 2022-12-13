@@ -1,8 +1,13 @@
 class Cita:
-    def __init__(self, fecha_cita, precio, estado) -> None:
-        self.__fecha_cita = fecha_cita
-        self.__precio = precio
-        self.__estado = estado
+    def __init__(self, fecha_cita, hora, area, medico, consultorio, paciente_dni) -> None:
+        self._id= id
+        self._fecha_cita = fecha_cita
+        self._hora = hora
+        self._area = area
+        self._medico = medico
+        self._consultorio = consultorio
+        self._paciente_dni = paciente_dni
+
 
     @property
     def fecha_cita(self):
@@ -13,27 +18,51 @@ class Cita:
         self.__fecha_cita = fecha_cita
 
     @property
-    def precio(self):
-        return self.__precio
+    def hora(self):
+            return self.__hora
 
-    @precio.setter
-    def precio(self, precio):
-        self.__precio = precio
+    @hora.setter
+    def hora(self, hora):
+        self.__hora = hora
 
     @property
-    def estado(self):
-        return self.__estado
+    def area(self):
+        return self.__area
 
-    @estado.setter
-    def estado(self, estado):
-        self.__estado = estado
+    @area.setter
+    def area(self, area):
+        self.__area = area
+
+    @property
+    def medico(self):
+        return self.__medico
+
+    @medico.setter
+    def medico(self, medico):
+        self.__medico = medico
+
+    @property
+    def consultorio(self):
+        return self.__consultorio
+
+    @consultorio.setter
+    def consultorio(self, consultorio):
+        self.__consultorio = consultorio
+
+    @property
+    def paciente_dni(self):
+        return self.__paciente_dni
+
+    @paciente_dni.setter
+    def paciente_dni(self, paciente_dni):
+        self.__paciente_dni = paciente_dni
+
+
 
     # Se agenda la cita
     def agendar_cita(self, fecha_cita, precio, estado):
         pass
     # Se efectuara el pago de la cita agendada
-    def pagar_cita(self, fecha_cita, precio):
-        pass
     
     # Se archiva la cita
     def archivar_cita(self, estado):
