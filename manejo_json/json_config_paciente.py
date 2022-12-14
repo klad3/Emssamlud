@@ -48,20 +48,22 @@ class JsonConfigPaciente(JsonConfigEntities):
                     return False
 
     def modificar_json(self, dni, telefono, direccion, email, observacion):
+        self.pacientes_act = []
         with open(self.json_paciente, 'r', encoding='utf-8') as file:
             self.pacientes = json.load(file)
 
-            i = 0
-            for p in self.pacientes:
-                if p['dni'] == dni:
+            for i in range(0, len(self.pacientes)):
+                if dni == self.pacientes[i]['dni']:
                     self.pacientes[i]['telefono'] = telefono
                     self.pacientes[i]['direccion'] = direccion
                     self.pacientes[i]['email'] = email
                     self.pacientes[i]['observacion'] = observacion
-                i += 1
-        
-        with open(self.json_paciente, 'r+', encoding='utf-8') as file:
-            json.dump(self.pacientes, file, indent=4, ensure_ascii=False)
+                    self.pacientes_act.append(self.pacientes[i])
+                else:
+                    self.pacientes_act.append(self.pacientes[i])
+
+        with open(self.json_paciente, 'w', encoding='utf-8') as file:
+            json.dump(self.pacientes_act, file, indent=4, ensure_ascii=False)
 
     def eliminar_json(self, dni):
         self.pacientes_act = []

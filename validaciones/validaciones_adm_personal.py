@@ -12,7 +12,7 @@ class ValidacionPersonal(ValidacionEntities):
     def validar_opcion_menu(self, opcion):
         try:
             int(opcion)
-            if int(opcion) >= 1 and int(opcion) <= 3:
+            if int(opcion) >= 1 and int(opcion) <= 4:
                 return True
         except:
             return False

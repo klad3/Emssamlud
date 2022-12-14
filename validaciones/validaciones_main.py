@@ -3,7 +3,7 @@ class ValidacionMain:
         try:
             int(opcion)
             self.opcion_valida = True
-            if int(opcion) >= 1 and int(opcion) <= 4:
+            if int(opcion) >= 1 and int(opcion) <= 5:
                 return True
         except:
             return False
@@ -12,7 +12,7 @@ class ValidacionMain:
         try:
             int(opcion)
             self.opcion_valida = True
-            if int(opcion) >= 1 and int(opcion) <= 2:
+            if int(opcion) >= 1 and int(opcion) <= 3:
                 return True
         except:
             return False
