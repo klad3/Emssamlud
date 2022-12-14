@@ -6,6 +6,10 @@ class JsonConfigEntities(ABC):
         pass
 
     @abstractmethod
+    def verificar_json(self):
+        pass
+
+    @abstractmethod
     def modificar_json(self):
         pass
 
