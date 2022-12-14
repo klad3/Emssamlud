@@ -1,5 +1,5 @@
 import json
-from .json_config_entities import JsonConfigEntities
+from manejo_json.json_config_entities import JsonConfigEntities
 import os
 import ast
 
@@ -31,7 +31,7 @@ class JsonConfigPaciente(JsonConfigEntities):
                     json.dump(self.pacientes, file, indent=4, ensure_ascii=False)
                     return True
 
-    def verificar_paciente_json(self, dni):
+    def verificar_json(self, dni):
         if os.stat(self.json_paciente).st_size == 0:
             return False
         else:
@@ -59,7 +59,7 @@ class JsonConfigPaciente(JsonConfigEntities):
                     telefono = data[i]['telefono']
                     email = data[i]['email']
 
-        paciente = [{'nombres': nombres,'apellido_paterno': apellido_paterno,'apellido_materno': apellido_materno, 'telefono': telefono, 'email': email}]
+        paciente = [{'dni': dni, 'nombres': nombres,'apellido_paterno': apellido_paterno,'apellido_materno': apellido_materno, 'telefono': telefono, 'email': email}]
 
         return paciente
 

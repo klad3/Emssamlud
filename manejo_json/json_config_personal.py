@@ -3,7 +3,6 @@ from manejo_json.json_config_entities import JsonConfigEntities
 import os
 import ast
 
-
 class JsonConfigPersonal(JsonConfigEntities):
     def __init__(self):
         super().__init__()
@@ -34,7 +33,7 @@ class JsonConfigPersonal(JsonConfigEntities):
                     json.dump(self.personal, file, indent=4, ensure_ascii=False)
                     return True
 
-    def verificar_personal_json(self, dni):
+    def verificar_json(self, dni):
         if os.stat(self.json_personal).st_size == 0:
             return False
         else:
@@ -50,6 +49,30 @@ class JsonConfigPersonal(JsonConfigEntities):
                     return True
                 else:
                     return False
+
+    def extraer_datos_json(self, dni):
+        with open(self.json_personal, 'r', encoding='utf-8') as file:
+            data = json.load(file)
+
+            for i in range(0, len(data)):
+                if dni == data[i]['dni']:
+                    nombres = data[i]['apellido_paterno'] +' '+data[i]['apellido_materno'] +', '+data[i]['nombres']
+
+        return nombres
+
+    def buscar_datos_json(self, especialidad):
+        with open(self.json_personal, 'r', encoding='utf-8') as file:
+            data = json.load(file)
+            medicos = []
+            for i in range(0, len(data)):
+                if data[i]['especialidad'] == especialidad and data[i]['ocupacion'] == 'Médico' and int(data[i]['citas_disponibles']) >= 1 :
+                    dni = data[i]['dni']
+                    nombres = data[i]['apellido_paterno'] +' '+data[i]['apellido_materno'] +', '+data[i]['nombres']
+                    disponibilidad = data[i]['disponibilidad']
+
+                    medico = {'dni': dni, 'medico': nombres, 'disponibilidad': disponibilidad}
+                    medicos.append(medico)
+        return medicos
 
     def modificar_json(self, dni, telefono, disponibilidad):
         with open(self.json_personal, 'r', encoding='utf-8') as file:

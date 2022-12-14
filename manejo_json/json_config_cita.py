@@ -3,7 +3,6 @@ from manejo_json.json_config_entities import JsonConfigEntities
 import os
 import ast
 
-
 class JsonConfigCita(JsonConfigEntities):
     def __init__(self):
         super().__init__()
@@ -20,21 +19,12 @@ class JsonConfigCita(JsonConfigEntities):
 
             with open(self.json_cita, 'r+', encoding='utf-8') as file:
                 self.cita = json.load(file)
-                cita_existe = False
+                self.cita.append(cita_dict)
+                file.seek(0)
+                json.dump(self.cita, file, indent=4, ensure_ascii=False)
+                return True
 
-                for p in self.cita:
-                    if p['id'] == cita_dict['id']:
-                        print(p)
-                        cita_existe = True
-                        return False
-
-                if not cita_existe:
-                    self.cita.append(cita_dict)
-                    file.seek(0)
-                    json.dump(self.cita, file, indent=4, ensure_ascii=False)
-                    return True
-
-    def verificar_cita_json(self, id):
+    def verificar_json(self, id):
         if os.stat(self.json_cita).st_size == 0:
             return False
         else:
