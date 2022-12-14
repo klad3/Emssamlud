@@ -36,6 +36,8 @@ class AdministracionCita(MenuAdministracion):
         self.paciente = []
         print('Registro cita médica.')
 
+        self.id = self.json_cita.asignar_id_json()
+
         self.dni = input('Paciente DNI: ')
 
         self.paciente = self.json_paciente.extraer_datos_json(self.dni)
@@ -51,18 +53,16 @@ class AdministracionCita(MenuAdministracion):
         self.fecha_cita = input('Fecha: ')
 
 
-        self.cita = c.Cita(self.paciente, self.area, self.medico, self.fecha_cita)
+        self.cita = c.Cita(self.id, self.paciente, self.area, self.medico, self.fecha_cita)
 
 
 
-        datos_cita = [{ 'paciente': self.cita._paciente, 'area': self.cita._area,
+        datos_cita = [{ 'id': self.cita._id, 'paciente': self.cita._paciente, 'area': self.cita._area,
                            'medico': self.cita._medico, 'fecha_cita': self.cita._fecha_cita}]
 
 
-        if self.json_cita.registrar_json(datos_cita):
-            print('La cita ha sido registrada correctamente.')
-        else:
-            print('Error, la cita ya fue registrado.')
+        self.json_cita.registrar_json(datos_cita)
+        print('La cita ha sido registrada correctamente.')
 
 
     def modificar(self):

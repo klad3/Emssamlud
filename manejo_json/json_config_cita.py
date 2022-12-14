@@ -41,6 +41,15 @@ class JsonConfigCita(JsonConfigEntities):
                 else:
                     return False
 
+    def asignar_id_json(self):
+        contador = 100
+        if os.stat(self.json_cita).st_size != 0:
+            with open(self.json_cita, 'r', encoding='utf-8') as file:
+                data = json.load(file)
+                contador += len(data)
+        cita_id = 'C' + str(contador)
+        return cita_id
+
     def modificar_json(self, id, fecha_cita, hora):
         with open(self.json_cita, 'r', encoding='utf-8') as file:
             data = json.load(file)
