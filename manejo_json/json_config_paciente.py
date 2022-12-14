@@ -47,6 +47,22 @@ class JsonConfigPaciente(JsonConfigEntities):
                 else:
                     return False
 
+    def extraer_datos_json(self, dni):
+        with open(self.json_paciente, 'r', encoding='utf-8') as file:
+            data = json.load(file)
+
+            for i in range(0, len(data)):
+                if dni == data[i]['dni']:
+                    nombres = data[i]['nombres']
+                    apellido_paterno = data[i]['apellido_paterno']
+                    apellido_materno = data[i]['apellido_materno']
+                    telefono = data[i]['telefono']
+                    email = data[i]['email']
+
+        paciente = [{'nombres': nombres,'apellido_paterno': apellido_paterno,'apellido_materno': apellido_materno, 'telefono': telefono, 'email': email}]
+
+        return paciente
+
     def modificar_json(self, dni, telefono, direccion, email, observacion):
         self.pacientes_act = []
         with open(self.json_paciente, 'r', encoding='utf-8') as file:
