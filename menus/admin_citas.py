@@ -1,11 +1,15 @@
 from menus.menu_administracion import MenuAdministracion
 import menus.menu as menu
 import entities.cita as c
+from manejo_json.json_config_paciente import JsonConfigPaciente
 from manejo_json.json_config_cita import JsonConfigCita
+from manejo_json.json_config_personal import JsonConfigPersonal
 
 class AdministracionCita(MenuAdministracion):
     def __init__(self):
         self.json_cita = JsonConfigCita()
+        self.json_paciente = JsonConfigPaciente()
+        self.json_personal = JsonConfigPersonal()
 
     def menu(self):
         self.repetir_menu = True
@@ -29,27 +33,30 @@ class AdministracionCita(MenuAdministracion):
                 self.menu_anterior.menu_administracion()
 
     def registrar(self):
+        self.paciente = []
         print('Registro cita médica.')
 
-        self.fecha_cita = input('Fecha: ')
+        self.dni = input('Paciente DNI: ')
 
-        self.hora = input('Hora: ')
+        self.paciente = self.json_paciente.extraer_datos_json(self.dni)
 
         self.area = input('Area: ')
 
-        self.medico = input('Medico: ')
+        print(self.json_personal.buscar_datos_json(self.area))
 
-        self.consultorio = input('Consultorio: ')
+        self.medico_dni = input('Medico DNI: ')
 
-        self.paciente_dni = input('Paciente DNI: ')
+        self.medico = self.json_personal.extraer_datos_json(self.medico_dni)
+
+        self.fecha_cita = input('Fecha: ')
 
 
-        self.cita = c.Cita(self.fecha_cita, self.hora, self.area, self.medico, self.consultorio, self.paciente_dni)
+        self.cita = c.Cita(self.paciente, self.area, self.medico, self.fecha_cita)
 
-        datos_cita = [{ 'fecha_cita': self.cita._fecha_cita, 'hora': self.cita._hora,
-                           'area': self.cita._area,
-                           'medico': self.cita._medico,
-                           'consultorio': self.cita._consultorio, 'paciente_dni': self.cita._paciente_dni}]
+
+
+        datos_cita = [{ 'paciente': self.cita._paciente, 'area': self.cita._area,
+                           'medico': self.cita._medico, 'fecha_cita': self.cita._fecha_cita}]
 
 
         if self.json_cita.registrar_json(datos_cita):
@@ -60,7 +67,6 @@ class AdministracionCita(MenuAdministracion):
 
     def modificar(self):
         pass
-
 
     def eliminar(self):
         pass

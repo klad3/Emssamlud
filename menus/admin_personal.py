@@ -119,7 +119,7 @@ class AdministracionPersonal(MenuAdministracion):
         while not self.validaciones.validar_dni(self.dni):
             self.dni = input('Ingrese un DNI válido (8 dígitos): ')
 
-        if self.json_personal.verificar_personal_json(self.dni):
+        if self.json_personal.verificar_json(self.dni):
             print(f'El personal de salud de DNI {self.dni} ha sido encontrado, modifique sus datos.')
             self.telefono = input('Número telefónico: ')
             while not self.validaciones.validar_telefono(self.telefono):
@@ -139,7 +139,7 @@ class AdministracionPersonal(MenuAdministracion):
         while not self.validaciones.validar_dni(self.dni):
             self.dni = input('Ingrese un DNI válido (8 dígitos): ')
 
-        if self.json_personal.verificar_personal_json(self.dni):
+        if self.json_personal.verificar_json(self.dni):
             self.json_personal.eliminar_json(self.dni)
             print(f'El personal de salud de DNI {self.dni} ha sido eliminado.')
         else:

@@ -1,12 +1,9 @@
 class Cita:
-    def __init__(self, fecha_cita, hora, area, medico, consultorio, paciente_dni) -> None:
-        self._id= id
+    def __init__(self, paciente, area, medico, fecha_cita) -> None:
         self._fecha_cita = fecha_cita
-        self._hora = hora
         self._area = area
         self._medico = medico
-        self._consultorio = consultorio
-        self._paciente_dni = paciente_dni
+        self._paciente = paciente
 
 
     @property
@@ -51,11 +48,11 @@ class Cita:
 
     @property
     def paciente_dni(self):
-        return self.__paciente_dni
+        return self.__paciente
 
     @paciente_dni.setter
-    def paciente_dni(self, paciente_dni):
-        self.__paciente_dni = paciente_dni
+    def paciente_dni(self, paciente):
+        self.__paciente = paciente
 
 
 
