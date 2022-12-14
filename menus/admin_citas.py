@@ -30,7 +30,7 @@ class AdministracionCita(MenuAdministracion):
             else:
                 self.repetir_menu = False
                 self.menu_anterior = menu.Menu()
-                self.menu_anterior.menu_administracion()
+                self.menu_anterior.menu_principal()
 
     def registrar(self):
         self.paciente = []
