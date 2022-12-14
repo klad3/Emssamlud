@@ -1,9 +1,9 @@
 from menus.menu_administracion import MenuAdministracion
+import menus.menu as menu
 import validaciones.validaciones_adm_personal as v
 import entities.medico as m
 import entities.enfermero as e
 from manejo_json.json_config_personal import JsonConfigPersonal
-
 
 class AdministracionPersonal(MenuAdministracion):
     def __init__(self):
@@ -11,20 +11,27 @@ class AdministracionPersonal(MenuAdministracion):
         self.json_personal = JsonConfigPersonal()
 
     def menu(self):
-        print('Bienvenido a la administración del personal.')
-        print('1. Registrar personal de salud.')
-        print('2. Modificar personal de salud.')
-        print('3. Eliminar personal de salud.')
-        self.opcion_menu = int(input('Digite una opción: '))
-        while not self.validaciones.validar_opcion_menu(self.opcion_menu):
-            self.opcion_menu = int(input('Digite una opción válida: '))
-        if self.opcion_menu == 1:
-            self.registrar()
-        elif self.opcion_menu == 2:
-            self.modificar()
-        else:
-            self.eliminar()
-
+        self.repetir_menu = True
+        while self.repetir_menu:
+            print('Bienvenido a la administración del personal.')
+            print('1. Registrar personal de salud.')
+            print('2. Modificar personal de salud.')
+            print('3. Eliminar personal de salud.')
+            print('4. Volver.')
+            
+            self.opcion_menu = input('Digite una opción: ')
+            while not self.validaciones.validar_opcion_menu(self.opcion_menu):
+                self.opcion_menu = input('Digite una opción válida: ')
+            if int(self.opcion_menu) == 1:
+                self.registrar()
+            elif int(self.opcion_menu) == 2:
+                self.modificar()
+            elif int(self.opcion_menu) == 3:
+                self.eliminar()
+            else:
+                self.repetir_menu = False
+                self.menu_anterior = menu.Menu()
+                self.menu_anterior.menu_administracion()
 
     def registrar(self):
         print('Registro del personal de salud.')

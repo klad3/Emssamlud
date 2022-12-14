@@ -1,10 +1,8 @@
-from abc import ABC
-
+import menus.menu as menu
 from menus.menu_administracion import MenuAdministracion
 import validaciones.validaciones_adm_paciente as v
 import entities.paciente as p
 import manejo_json.json_config_paciente as jp
-
 
 class AdministracionPaciente(MenuAdministracion):
     def __init__(self):
@@ -12,20 +10,29 @@ class AdministracionPaciente(MenuAdministracion):
         self.json_paciente = jp.JsonConfigPaciente()
 
     def menu(self):
-        print('Bienvenido a la administración de pacientes')
-        print('1. Registrar paciente.')
-        print('2. Modificar datos del paciente.')
-        print('3. Eliminar paciente.')
-        self.opcion_menu_adm = input('Digite una opción: ')
-        while not self.validaciones.validar_opcion_menu(self.opcion_menu_adm):
-            self.opcion_menu_adm = input('Digite una opción válida: ')
+        self.repetir_menu = True
+        while self.repetir_menu:
+            print('Bienvenido a la administración de pacientes')
+            print('1. Registrar paciente.')
+            print('2. Modificar datos del paciente.')
+            print('3. Eliminar paciente.')
+            print('4. Volver.')
+            
+            self.opcion_menu = input('Digite una opción: ')
+            while not self.validaciones.validar_opcion_menu(self.opcion_menu):
+                self.opcion_menu = input('Digite una opción válida: ')
 
-        if int(self.opcion_menu_adm) == 1:
-            self.registrar()
-        elif int(self.opcion_menu_adm) == 2:
-            self.modificar()
-        else:
-            self.eliminar()
+            if int(self.opcion_menu) == 1:
+                self.registrar()
+                print('')
+            elif int(self.opcion_menu) == 2:
+                self.modificar()
+            elif int(self.opcion_menu) == 3:
+                self.eliminar()
+            else:
+                self.repetir_menu = False
+                self.menu_anterior = menu.Menu()
+                self.menu_anterior.menu_administracion()
 
     def registrar(self):
         self.dni = input('DNI: ')

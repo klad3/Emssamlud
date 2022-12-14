@@ -1,25 +1,32 @@
 from menus.menu_administracion import MenuAdministracion
+import menus.menu as menu
 import entities.cita as c
 from manejo_json.json_config_cita import JsonConfigCita
-
 
 class AdministracionCita(MenuAdministracion):
     def __init__(self):
         self.json_cita = JsonConfigCita()
 
     def menu(self):
-        print('Bienvenido a la administración de citas.')
-        print('1. Registrar cita médica.')
-        print('2. Modificar cita médica.')
-        print('3. Eliminar cita médica.')
-        self.opcion_menu = int(input('Digite una opción: '))
-        if self.opcion_menu == 1:
-            self.registrar()
-        elif self.opcion_menu == 2:
-            self.modificar()
-        else:
-            self.eliminar()
+        self.repetir_menu = True
+        while self.repetir_menu:
+            print('Bienvenido a la administración de citas.')
+            print('1. Registrar cita médica.')
+            print('2. Modificar cita médica.')
+            print('3. Eliminar cita médica.')
+            print('4. Volver.')
 
+            self.opcion_menu = input('Digite una opción: ')
+            if int(self.opcion_menu) == 1:
+                self.registrar()
+            elif int(self.opcion_menu) == 2:
+                self.modificar()
+            elif int(self.opcion_menu) == 3:
+                self.eliminar()
+            else:
+                self.repetir_menu = False
+                self.menu_anterior = menu.Menu()
+                self.menu_anterior.menu_administracion()
 
     def registrar(self):
         print('Registro cita médica.')
