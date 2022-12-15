@@ -2,10 +2,11 @@ from .personal_salud import Personal
 
 class Medico(Personal):
     def __init__(self, dni, nombres, apellido_paterno, apellido_materno,
-                telefono, sexo, disponibilidad, ocupacion, especialidad):
+                telefono, sexo, disponibilidad, ocupacion, especialidad, citas_disponibles):
         super().__init__(dni, nombres, apellido_paterno, apellido_materno,
                         telefono,sexo, disponibilidad, ocupacion)
         self.__especialidad = especialidad
+        self.__citas_disponibles = citas_disponibles
 
     @property
     def especialidad(self):

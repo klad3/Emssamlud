@@ -76,11 +76,11 @@ class AdministracionPersonal(MenuAdministracion):
             self.especialidad = input('Escriba su especialidad (C - T - O): ')
             while not self.validaciones.validar_especialidad(self.especialidad):
                 self.especialidad = input('Escriba una especialidad disponible (C - T - O): ')
-
+            self.citas_disponibles = 5
             self.personal = m.Medico(self.dni, self.nombres, self.apellido_paterno,
                                      self.apellido_materno, self.telefono, self.validaciones.sexo,
                                      self.validaciones.disponibilidad, self.validaciones.ocupacion,
-                                     self.validaciones.especialidad)
+                                     self.validaciones.especialidad,self.citas_disponibles)
         else:
             self.es_medico = False
             print('Se muestran las áreas de enfermería disponibles:')
@@ -104,7 +104,7 @@ class AdministracionPersonal(MenuAdministracion):
                            'ocupacion': self.personal._ocupacion}]
 
         if self.es_medico:
-            datos_personal[0].update(especialidad=self.personal.especialidad)
+            datos_personal[0].update(especialidad=self.personal.especialidad,citas_disponibles=self.citas_disponibles)
         else:
             datos_personal[0].update(area=self.personal.area)
 
