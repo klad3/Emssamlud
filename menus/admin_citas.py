@@ -4,13 +4,14 @@ import entities.cita as c
 from manejo_json.json_config_paciente import JsonConfigPaciente
 from manejo_json.json_config_cita import JsonConfigCita
 from manejo_json.json_config_personal import JsonConfigPersonal
+from validaciones.validaciones_adm_citas import ValidacionAdmCita
 
 class AdministracionCita(MenuAdministracion):
     def __init__(self):
         self.json_cita = JsonConfigCita()
         self.json_paciente = JsonConfigPaciente()
         self.json_personal = JsonConfigPersonal()
-
+        self.validaciones =ValidacionAdmCita()
     def menu(self):
         self.repetir_menu = True
         while self.repetir_menu:
@@ -44,7 +45,9 @@ class AdministracionCita(MenuAdministracion):
 
         self.area = input('Area: ')
 
-        print(self.json_personal.buscar_datos_json(self.area))
+        self.validaciones.mostrar_ordenado(self.json_personal.buscar_datos_json(self.area))
+
+        # print(self.json_personal.buscar_datos_json(self.area))
 
         self.medico_dni = input('Medico DNI: ')
 
