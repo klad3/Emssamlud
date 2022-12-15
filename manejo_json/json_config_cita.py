@@ -51,6 +51,7 @@ class JsonConfigCita(JsonConfigEntities):
         return cita_id
 
     def modificar_json(self, id, fecha_cita, hora):
+        self.citas_act = []
         with open(self.json_cita, 'r', encoding='utf-8') as file:
             data = json.load(file)
 
@@ -58,9 +59,11 @@ class JsonConfigCita(JsonConfigEntities):
             if id == data[i]['id']:
                 data[i]['fecha'] = fecha_cita
                 data[i]['hora'] = hora
+            else:
+                self.citas_act.append(data[i])
 
-        with open(self.json_cita, 'r+', encoding='utf-8') as file:
-            json.dump(data, file, indent=4, ensure_ascii=False)
+        with open(self.json_cita, 'w', encoding='utf-8') as file:
+            json.dump(self.citas_act, file, indent=4, ensure_ascii=False)
 
     def eliminar_json(self, id):
         self.cita_act = []
