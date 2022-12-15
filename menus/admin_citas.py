@@ -11,7 +11,8 @@ class AdministracionCita(MenuAdministracion):
         self.json_cita = JsonConfigCita()
         self.json_paciente = JsonConfigPaciente()
         self.json_personal = JsonConfigPersonal()
-        self.validaciones =ValidacionAdmCita()
+        self.validaciones = ValidacionAdmCita()
+
     def menu(self):
         self.repetir_menu = True
         while self.repetir_menu:
@@ -47,8 +48,6 @@ class AdministracionCita(MenuAdministracion):
 
         self.validaciones.mostrar_ordenado(self.json_personal.buscar_datos_json(self.area))
 
-        # print(self.json_personal.buscar_datos_json(self.area))
-
         self.medico_dni = input('Medico DNI: ')
 
         self.medico = self.json_personal.extraer_datos_json(self.medico_dni)
@@ -69,7 +68,21 @@ class AdministracionCita(MenuAdministracion):
 
 
     def modificar(self):
-        pass
+        self.dni = input("Ingrese el DNI del paciente para la busqueda de sus citas: ")
+
+        if self.json_cita.verificar_json(self.dni):
+            print(f'El paciente de DNI {self.dni} cuenta con lo siguiente: ')
+            print(self.json_cita.buscar_datos_json(self.dni))
+            self.id = input('Ingrese el ID de la cita a modificar: ')
+            self.area = self.json_cita.buscar_especialidad_json(self.id)
+            self.validaciones.mostrar_ordenado(self.json_personal.buscar_datos_json(self.area))
+            self.medico_dni = input('DNI Médico: ')
+
+            self.fecha_cita = input('Nueva fecha de la cita: ')
+
+            self.json_cita.modificar_json(self.id, self.fecha_cita, self.medico_dni)
+        else:
+            print('Este paciente no tiene citas programadas.')
 
     def eliminar(self):
         pass
