@@ -60,7 +60,7 @@ class AdministracionCita(MenuAdministracion):
 
 
         datos_cita = [{ 'id': self.cita._id, 'paciente': self.cita._paciente, 'area': self.cita._area,
-                           'medico': self.cita._medico, 'fecha_cita': self.cita._fecha_cita}]
+                           'medico': self.cita._medico, 'fecha_cita': self.cita._fecha_cita, 'activo': True}]
 
 
         self.json_cita.registrar_json(datos_cita)
@@ -85,4 +85,14 @@ class AdministracionCita(MenuAdministracion):
             print('Este paciente no tiene citas programadas.')
 
     def eliminar(self):
-        pass
+        self.dni = input("Ingrese el DNI del paciente para la busqueda de sus citas: ")
+
+        if self.json_cita.verificar_json(self.dni):
+            print(f'El paciente de DNI {self.dni} cuenta con lo siguiente: ')
+            print(self.json_cita.buscar_datos_json(self.dni))
+            self.id = input('Ingrese el ID de la cita a archivar: ')
+
+            self.json_cita.eliminar_json(self.id)
+        else:
+            print('Este paciente no tiene citas programadas.')
+
