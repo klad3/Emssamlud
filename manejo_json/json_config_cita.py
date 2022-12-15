@@ -57,7 +57,7 @@ class JsonConfigCita(JsonConfigEntities):
             data = json.load(file)
             citas = []
             for i in range(0, len(data)):
-                if data[i]['paciente']['dni'] == dni:
+                if data[i]['paciente']['dni'] == dni and data[i]['activo'] == True:
                     id = data[i]['id']
                     fecha_cita = data[i]['fecha_cita']
                     medico = data[i]['medico']
@@ -95,15 +95,15 @@ class JsonConfigCita(JsonConfigEntities):
 
     def eliminar_json(self, id):
         self.cita_act = []
-
         with open(self.json_cita, 'r', encoding='utf-8') as file:
-            self.cita = json.load(file)
+            data = json.load(file)
 
-            for p in self.cita:
-                if p['id'] == id:
-                    pass
-                else:
-                    self.cita_act.append(p)
+        for i in range(0, len(data)):
+            if id == data[i]['id']:
+                data[i]['activo'] = False
+                self.cita_act.append(data[i])
+            else:
+                self.cita_act.append(data[i])
 
-        with open(self.json_cita, 'w', encoding='utf-8') as file:
-            json.dump(self.cita_act, file, indent=4, ensure_ascii=False)
+            with open(self.json_cita, 'w', encoding='utf-8') as file:
+                json.dump(self.cita_act, file, indent=4, ensure_ascii=False)
