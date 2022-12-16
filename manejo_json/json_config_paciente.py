@@ -59,7 +59,7 @@ class JsonConfigPaciente(JsonConfigEntities):
                     telefono = data[i]['telefono']
                     email = data[i]['email']
 
-        paciente = [{'dni': dni, 'nombres': nombres,'apellido_paterno': apellido_paterno,'apellido_materno': apellido_materno, 'telefono': telefono, 'email': email}]
+        paciente = {'dni': dni, 'nombres': nombres,'apellido_paterno': apellido_paterno,'apellido_materno': apellido_materno, 'telefono': telefono, 'email': email}
 
         return paciente
 

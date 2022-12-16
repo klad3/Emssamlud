@@ -80,9 +80,7 @@ class ValidacionPersonal(ValidacionEntities):
             return False
 
     def validar_especialidad(self, especialidad):
-        if especialidad.replace(' ', '').lower() == 'c' or especialidad.replace(' ',
-                                                                                '').lower() == 't' or especialidad.replace(
-                ' ', '').lower() == 'o':
+        if especialidad.replace(' ', '').lower() == 'c' or especialidad.replace(' ','').lower() == 't' or especialidad.replace(' ', '').lower() == 'o':
             if especialidad.replace(' ', '').lower() == 'c':
                 self.especialidad = 'Cardiología'
             elif especialidad.replace(' ', '').lower() == 't':

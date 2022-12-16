@@ -1,11 +1,37 @@
-from validaciones.validaciones_entities import ValidacionEntities
 from manejo_json.json_config_paciente import JsonConfigPaciente
 from datetime import date
 
-class ValidacionAdmCita(ValidacionEntities):
+class ValidacionAdmCita:
     def __init__(self):
         self.sexo = None
+        self.opcion_registro = None
         self.json_citas = JsonConfigPaciente()
+
+    def validar_opcion_menu(self, opcion):
+        try:
+            int(opcion)
+            if int(opcion) >= 1 and int(opcion) <= 4:
+                return True
+        except:
+            return False
+
+    def validar_dni(self, dni):
+        try:
+            int(dni)
+            if len(dni.replace(' ', '')) == 8:
+                return True
+        except:
+            return False
+        
+    def validar_opcion_registro(self, opcion):
+        if opcion.replace(' ', '').upper() == 'S' or opcion.replace(' ', '').upper() == 'N':
+            if opcion.replace(' ', '').upper() == 'S':
+                self.opcion_registro = 'S'
+            else:
+                self.opcion_registro = 'N'
+            return True
+        else:
+            return False
 
     def mostrar_ordenado(self, lista):
         if lista is not None:
@@ -13,18 +39,9 @@ class ValidacionAdmCita(ValidacionEntities):
             for i in lista:
                 print("\t_________________________________________________________________________________________")
                 print("\t DNI: ", i['dni'] + '    |\t' + " Médico: ", i['medico'] + '       |\t' + " Disponibilidad: ",
-                      i['disponibilidad'])
-
-    def validar_opcion_menu(self, opcion):
-        pass
-
-    def validar_dni(self, dni):
-        try:
-            int(dni)
-            if self.json_citas.verificar_json(dni):
-                return True
-        except:
-            return False
+                    i['disponibilidad'])
+        else:
+            print('No hay médicos disponibles en el área mencionada.')
 
     def validar_nombres(self, nombres):
         if nombres.replace(' ', '').isalnum() and not any(caracter.isdigit() for caracter in nombres):

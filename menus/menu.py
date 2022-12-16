@@ -15,7 +15,7 @@ class Menu:
         print('-----------------Sistemas de citas médicas - Emssamlud-----------------')
         print('Bienvenido, administrador.')
         print('1. Administración general.')
-        print('2. Agendar cita.')
+        print('2. Administrar citas.')
         print('3. Atender cita.')
         print('4. Reportes.')
         print('5. Salir.')
