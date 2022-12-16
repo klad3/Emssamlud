@@ -83,6 +83,7 @@ class AdministracionCita(MenuAdministracion):
                                             'medico': self.cita._medico, 'fecha_cita': self.cita._fecha_cita, 'activo': True}]
 
                             self.json_cita.registrar_json(datos_cita)
+                            self.json_personal.modificar_citas_disponibles_json(self.dni_medico)
                             print('La cita ha sido registrada correctamente.')
                         else:
                             print(f'El médico con DNI {self.dni_medico} no labora en el área de {self.validaciones_medico.especialidad}.')

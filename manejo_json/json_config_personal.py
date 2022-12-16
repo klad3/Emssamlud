@@ -88,6 +88,18 @@ class JsonConfigPersonal(JsonConfigEntities):
                     medicos.append(medico)
         return medicos
 
+    def modificar_citas_disponibles_json(self, dni):
+        with open(self.json_personal, 'r', encoding='utf-8') as file:
+            data = json.load(file)
+
+        for i in range(0, len(data)):
+            if dni == data[i]['dni']:
+                citas_disponibles = data[i]['citas_disponibles']
+                data[i]['citas_disponibles'] = citas_disponibles - 1
+
+        with open(self.json_personal, 'r+', encoding='utf-8') as file:
+            json.dump(data, file, indent=4, ensure_ascii=False)
+
     def modificar_json(self, dni, telefono, disponibilidad):
         with open(self.json_personal, 'r', encoding='utf-8') as file:
             data = json.load(file)
