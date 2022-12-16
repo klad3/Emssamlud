@@ -41,12 +41,12 @@
 ***
     > Se agregó la funcionalidad de Administrar Citas con sus respectivas validaciones,  
     esta funcionalidad incluye agendar, reprogramar y archivar cita todo esto gracias 
-    a el archivo json_config_cita.py. Estas citas se guardarán en un archivo .json 
+    a el archivo json_config_cita.py. Estas citas se guardarán en un archivo .Json 
     llamado cita.json.
 
     > Se agregó la funcionalidad de Administrar Personal de Salud con sus respectivas 
     validaciones, esta funcionalidad incluye registrar, modificar y eliminar personal 
     esto se encuentra en el archivo json_config_personal. Los perfiles del personal 
-    de salud se guardó en un archivo .json llamado personal.json.
+    de salud se guardó en un archivo .Json llamado personal.json.
 
 ***
