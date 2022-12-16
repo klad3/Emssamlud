@@ -49,6 +49,20 @@ class JsonConfigPersonal(JsonConfigEntities):
                     return True
                 else:
                     return False
+        
+    def verificar_especialidad_json(self, especialidad):
+        with open(self.json_personal, 'r', encoding='utf-8') as file:
+            data = json.load(file)
+        for i in range(0, len(data)):
+            if data[i]['especialidad'] == especialidad:
+                return True
+
+    def verificar_especialidad_medico_json(self, dni, especialidad):
+        with open(self.json_personal, 'r', encoding='utf-8') as file:
+            data = json.load(file)
+        for i in range(0, len(data)):
+            if data[i]['dni'] == dni and data[i]['especialidad'] == especialidad:
+                return True
 
     def extraer_datos_json(self, dni):
         with open(self.json_personal, 'r', encoding='utf-8') as file:
