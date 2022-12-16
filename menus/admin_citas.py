@@ -73,7 +73,9 @@ class AdministracionCita(MenuAdministracion):
                         if self.json_personal.verificar_especialidad_medico_json(self.dni_medico, self.validaciones_medico.especialidad):
                             self.medico = self.json_personal.extraer_datos_json(self.dni_medico)
 
-                            self.fecha_cita = input('Fecha: ')
+                            self.fecha_cita = input('Ingrese fecha de la cita (Fecha-Mes-Año): ')
+                            while not self.validaciones_cita.validar_fecha_cita(self.fecha_cita):
+                                self.fecha_cita = input('Verifique la fecha ingresada (Plazo máximo = 30 días): ')
 
                             self.cita = c.Cita(self.id, self.paciente, self.validaciones_medico.especialidad, self.medico, self.fecha_cita)
 

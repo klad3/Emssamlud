@@ -43,12 +43,14 @@ class ValidacionAdmPaciente(ValidacionEntities):
     
     def validar_fecha_nacimiento(self, fecha):
         try:
-            date(int(fecha[6] + fecha[7] + fecha[8] + fecha[9]),
-                int(fecha[3] + fecha[4]),
-                int(fecha[0] + fecha[1]))
+            fecha_nac = date(int(fecha[6] + fecha[7] + fecha[8] + fecha[9]),
+                        int(fecha[3] + fecha[4]),
+                        int(fecha[0] + fecha[1]))
             
-            if len(fecha) == 10:
+            if len(fecha) == 10 and fecha_nac <= date.today():
                 return True
+            else:
+                return False
         except:
             return False
 
