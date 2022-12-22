@@ -50,7 +50,11 @@ class AdministracionCita(MenuAdministracion):
         self.dni_paciente = input('Paciente DNI: ')
         while not self.validaciones_cita.validar_dni(self.dni_paciente):
             self.dni_paciente = input('Ingrese un DNI válido (8 dígitos): ')
-        
+
+        self.fecha_cita = input('Ingrese fecha de la cita (Fecha-Mes-Año): ')
+        while not self.validaciones_cita.validar_fecha_cita(self.fecha_cita):
+            self.fecha_cita = input('Verifique la fecha ingresada (Plazo máximo = 30 días): ')
+
         if self.json_paciente.verificar_json(self.dni_paciente):
             self.paciente = self.json_paciente.extraer_datos_json(self.dni_paciente)
             print('Se muestran las áreas disponibles:')
@@ -61,38 +65,35 @@ class AdministracionCita(MenuAdministracion):
             try:
                 while not self.validaciones_medico.validar_especialidad(self.area):
                     self.area = input('Escriba un área disponible (C - T - O): ')
-                
+
                 if self.json_personal.verificar_especialidad_json(self.validaciones_medico.especialidad):
-                    self.validaciones_cita.mostrar_ordenado(self.json_personal.buscar_datos_json(self.validaciones_medico.especialidad))
-                    
+                    self.validaciones_cita.mostrar_ordenado(self.json_personal.buscar_datos_json(self.validaciones_medico.especialidad, self.fecha_cita))
+
                     self.dni_medico = input('Medico DNI: ')
                     while not self.validaciones_cita.validar_dni(self.dni_medico):
                         self.dni_medico = input('Ingrese un DNI válido (8 dígitos): ')
-                    
+
                     if self.json_personal.verificar_json(self.dni_medico):
                         if self.json_personal.verificar_especialidad_medico_json(self.dni_medico, self.validaciones_medico.especialidad):
                             self.medico = self.json_personal.extraer_datos_json(self.dni_medico)
 
-                            self.fecha_cita = input('Ingrese fecha de la cita (Fecha-Mes-Año): ')
-                            while not self.validaciones_cita.validar_fecha_cita(self.fecha_cita):
-                                self.fecha_cita = input('Verifique la fecha ingresada (Plazo máximo = 30 días): ')
 
                             self.cita = c.Cita(self.id, self.paciente, self.validaciones_medico.especialidad, self.medico, self.fecha_cita)
 
                             datos_cita = [{ 'id': self.cita._id, 'paciente': self.cita._paciente, 'area': self.cita._area,
-                                            'medico': self.cita._medico, 'fecha_cita': self.cita._fecha_cita, 'activo': True}]
+                                                'medico': self.cita._medico, 'fecha_cita': self.cita._fecha_cita, 'activo': True}]
 
                             self.json_cita.registrar_json(datos_cita)
-                            self.json_personal.modificar_citas_disponibles_json(self.dni_medico)
+                            self.json_personal.modificar_citas_disponibles_json(self.dni_medico, self.fecha_cita)
                             print('La cita ha sido registrada correctamente.')
                         else:
                             print(f'El médico con DNI {self.dni_medico} no labora en el área de {self.validaciones_medico.especialidad}.')
                     else:
                         print(f'El médico con DNI {self.dni_medico} no existe.')
-                else:
-                    print(f'El área {self.validaciones_medico.especialidad} no ha sido registrada.')
             except:
-                print('No hay médicos registrados en el área indicada.')
+                print('No hay médicos disponibles en el área indicada.')
+            else:
+                print(f'El área {self.validaciones_medico.especialidad} no ha sido registrada.')
         else:
             print(f'El paciente con DNI {self.dni_paciente} no existe.')
 
@@ -104,10 +105,9 @@ class AdministracionCita(MenuAdministracion):
             print(self.json_cita.buscar_datos_json(self.dni))
             self.id = input('Ingrese el ID de la cita a modificar: ')
             self.area = self.json_cita.buscar_especialidad_json(self.id)
-            self.validaciones_cita.mostrar_ordenado(self.json_personal.buscar_datos_json(self.area))
-            self.medico_dni = input('DNI Médico: ')
-
             self.fecha_cita = input('Nueva fecha de la cita: ')
+            self.validaciones_cita.mostrar_ordenado(self.json_personal.buscar_datos_json(self.area, self.fecha_cita))
+            self.medico_dni = input('DNI Médico: ')
 
             self.json_cita.modificar_json(self.id, self.fecha_cita, self.medico_dni)
         else:

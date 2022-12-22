@@ -74,12 +74,13 @@ class JsonConfigPersonal(JsonConfigEntities):
 
         return nombres
 
-    def buscar_datos_json(self, especialidad):
+    def buscar_datos_json(self, especialidad, fecha):
         with open(self.json_personal, 'r', encoding='utf-8') as file:
             data = json.load(file)
             medicos = []
+            fecha_dia = str(fecha)[0] + str(fecha)[1]
             for i in range(0, len(data)):
-                if data[i]['especialidad'] == especialidad and data[i]['ocupacion'] == 'Médico' and int(data[i]['citas_disponibles']) >= 1 :
+                if data[i]['especialidad'] == especialidad and data[i]['ocupacion'] == 'Médico' and int(data[i]['citas_disponibles'][fecha_dia]) >= 1 :
                     dni = data[i]['dni']
                     nombres = data[i]['apellido_paterno'] +' '+data[i]['apellido_materno'] +', '+data[i]['nombres']
                     disponibilidad = data[i]['disponibilidad']
@@ -88,14 +89,15 @@ class JsonConfigPersonal(JsonConfigEntities):
                     medicos.append(medico)
         return medicos
 
-    def modificar_citas_disponibles_json(self, dni):
+    def modificar_citas_disponibles_json(self, dni, fecha):
+        fecha_dia = str(fecha)[0] + str(fecha)[1]
         with open(self.json_personal, 'r', encoding='utf-8') as file:
             data = json.load(file)
 
         for i in range(0, len(data)):
             if dni == data[i]['dni']:
-                citas_disponibles = data[i]['citas_disponibles']
-                data[i]['citas_disponibles'] = citas_disponibles - 1
+                citas_disponibles = data[i]['citas_disponibles'][fecha_dia]
+                data[i]['citas_disponibles'][fecha_dia] = citas_disponibles - 1
 
         with open(self.json_personal, 'r+', encoding='utf-8') as file:
             json.dump(data, file, indent=4, ensure_ascii=False)

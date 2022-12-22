@@ -76,7 +76,10 @@ class AdministracionPersonal(MenuAdministracion):
             self.especialidad = input('Escriba su especialidad (C - T - O): ')
             while not self.validaciones.validar_especialidad(self.especialidad):
                 self.especialidad = input('Escriba una especialidad disponible (C - T - O): ')
-            self.citas_disponibles = 5
+            self.citas_disponibles = {"1": 5, "2": 5, "3": 5, "4": 5, "5": 5, "6": 5, "7": 5, "8": 5, "9": 5, "10": 5,
+                                      "11": 5, "12": 5, "13": 5, "14": 5, "15": 5, "16": 5, "17": 5, "18": 5, "19": 5,
+                                      "20": 5, "21": 5, "22": 5, "23": 5, "24": 5, "25": 5, "26": 5, "27": 5, "28": 5,
+                                      "29": 5, "30": 5, "31": 5}
             self.personal = m.Medico(self.dni, self.nombres, self.apellido_paterno,
                                      self.apellido_materno, self.telefono, self.validaciones.sexo,
                                      self.validaciones.disponibilidad, self.validaciones.ocupacion,
