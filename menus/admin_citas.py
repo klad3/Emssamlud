@@ -80,8 +80,8 @@ class AdministracionCita(MenuAdministracion):
 
                             self.cita = c.Cita(self.id, self.paciente, self.validaciones_medico.especialidad, self.medico, self.fecha_cita)
 
-                            datos_cita = [{ 'id': self.cita._id, 'paciente': self.cita._paciente, 'area': self.cita._area,
-                                                'medico': self.cita._medico, 'fecha_cita': self.cita._fecha_cita, 'activo': True}]
+                            datos_cita = [{ 'id': self.cita.id, 'paciente': self.cita.paciente, 'area': self.cita.area,
+                                            'medico': self.cita.medico, 'fecha_cita': self.cita.fecha_cita, 'activo': True}]
 
                             self.json_cita.registrar_json(datos_cita)
                             self.json_personal.modificar_citas_disponibles_json(self.dni_medico, self.fecha_cita)
@@ -90,8 +90,10 @@ class AdministracionCita(MenuAdministracion):
                             print(f'El médico con DNI {self.dni_medico} no labora en el área de {self.validaciones_medico.especialidad}.')
                     else:
                         print(f'El médico con DNI {self.dni_medico} no existe.')
+                else:
+                    print(f'El área {self.validaciones_medico.especialidad} no ha sido registrada.')
             except:
-                print('No hay médicos disponibles en el área indicada.')
+                print('No hay médicos registrados.')
         else:
             print(f'El paciente con DNI {self.dni_paciente} no existe.')
 
@@ -121,7 +123,7 @@ class AdministracionCita(MenuAdministracion):
             self.json_cita.modificar_json(self.id, self.fecha_cita, self.medico_dni)
             print('La cita ha sido modificada con exito')
         else:
-            print('Este paciente no tiene citas programadas.')
+            print('Este paciente no está registrado o no tiene citas programadas.')
 
     def eliminar(self):
         self.dni = input("Ingrese el DNI del paciente para la busqueda de sus citas: ")
@@ -138,5 +140,5 @@ class AdministracionCita(MenuAdministracion):
 
             self.json_cita.eliminar_json(self.id)
         else:
-            print('Este paciente no tiene citas programadas.')
+            print('Este paciente no está registrado o no tiene citas programadas.')
 

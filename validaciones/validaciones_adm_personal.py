@@ -1,6 +1,5 @@
 from validaciones.validaciones_entities import ValidacionEntities
 
-
 class ValidacionPersonal(ValidacionEntities):
     def __init__(self) -> None:
         self.sexo = None
@@ -56,25 +55,11 @@ class ValidacionPersonal(ValidacionEntities):
             return False
 
     def validar_disponibilidad(self, disponibilidad):
-        if disponibilidad.replace(' ', '').lower() == 'm' or disponibilidad.replace(' ',
-                                                                                    '').lower() == 't' or disponibilidad.replace(
-                ' ', '').lower() == 'n':
+        if disponibilidad.replace(' ', '').lower() == 'm' or disponibilidad.replace(' ', '').lower() == 't':
             if disponibilidad.replace(' ', '').lower() == 'm':
                 self.disponibilidad = 'Mañana'
-            elif disponibilidad.replace(' ', '').lower() == 't':
+            else:
                 self.disponibilidad = 'Tarde'
-            else:
-                self.disponibilidad = 'Noche'
-            return True
-        else:
-            return False
-
-    def validar_ocupacion(self, ocupacion):
-        if ocupacion.replace(' ', '').lower() == 'm' or ocupacion.replace(' ', '').lower() == 'e':
-            if ocupacion.replace(' ', '').lower() == 'm':
-                self.ocupacion = 'Médico'
-            else:
-                self.ocupacion = 'Enfermero'
             return True
         else:
             return False
@@ -87,19 +72,6 @@ class ValidacionPersonal(ValidacionEntities):
                 self.especialidad = 'Traumatología'
             else:
                 self.especialidad = 'Odontología'
-            return True
-        else:
-            return False
-
-    def validar_area(self, area):
-        if area.replace(' ', '').lower() == 'p' or area.replace(' ', '').lower() == 's' or area.replace(' ',
-                                                                                                        '').lower() == 'e':
-            if area.replace(' ', '').lower() == 'p':
-                self.area = 'Pediatría'
-            elif area.replace(' ', '').lower() == 's':
-                self.area = 'Salud Mental'
-            else:
-                self.area = 'Emergencias'
             return True
         else:
             return False

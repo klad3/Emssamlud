@@ -80,7 +80,7 @@ class JsonConfigPersonal(JsonConfigEntities):
             medicos = []
             fecha_dia = str(fecha)[0] + str(fecha)[1]
             for i in range(0, len(data)):
-                if data[i]['especialidad'] == especialidad and data[i]['ocupacion'] == 'Médico' and int(data[i]['citas_disponibles'][fecha_dia]) >= 1 :
+                if data[i]['especialidad'] == especialidad and int(data[i]['citas_disponibles'][fecha_dia]) >= 1 :
                     dni = data[i]['dni']
                     nombres = data[i]['apellido_paterno'] +' '+data[i]['apellido_materno'] +', '+data[i]['nombres']
                     disponibilidad = data[i]['disponibilidad']
@@ -103,6 +103,7 @@ class JsonConfigPersonal(JsonConfigEntities):
             json.dump(data, file, indent=4, ensure_ascii=False)
 
     def modificar_json(self, dni, telefono, disponibilidad):
+        self.personal_act = []
         with open(self.json_personal, 'r', encoding='utf-8') as file:
             data = json.load(file)
 
@@ -110,9 +111,12 @@ class JsonConfigPersonal(JsonConfigEntities):
             if dni == data[i]['dni']:
                 data[i]['telefono'] = telefono
                 data[i]['disponibilidad'] = disponibilidad
+                self.personal_act.append(data[i])
+            else:
+                self.personal_act.append(data[i])
 
         with open(self.json_personal, 'r+', encoding='utf-8') as file:
-            json.dump(data, file, indent=4, ensure_ascii=False)
+            json.dump(self.personal_act, file, indent=4, ensure_ascii=False)
 
     def eliminar_json(self, dni):
         self.personal_act = []
