@@ -27,7 +27,7 @@ class administrar_reportes:
             self.diagnostico = input("Diagnostico: ")
             
             self.paciente = self.json_paciente.extraer_datos_json(self.paciente_dni)
-            self.reporte = r.reportes(self.paciente,self.peso,self.talla,self.motivo_cita,self.diagnostico)
+            self.reporte = r.Reportes(self.paciente,self.peso,self.talla,self.motivo_cita,self.diagnostico)
             campos_reporte = [{'paciente':self.reporte.paciente, 'peso' :self.peso, 'talla' :self.talla,'motivo_cita': self.motivo_cita,
                         'diagnostico': self.diagnostico}]
         
@@ -41,4 +41,4 @@ class administrar_reportes:
             
     def mostrar_datos(self,diccionario):
         for llave, valor in diccionario.items():
-            print(llave,":",valor)
+            print(llave,":",valor)  

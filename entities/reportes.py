@@ -1,4 +1,4 @@
-class reportes:
+class Reportes:
     def __init__(self,paciente,peso,talla,motivo,diagnostico) -> None:
         self.paciente=paciente
         self.peso = peso
