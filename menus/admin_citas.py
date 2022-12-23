@@ -97,6 +97,8 @@ class AdministracionCita(MenuAdministracion):
 
     def modificar(self):
         self.dni = input("Ingrese el DNI del paciente para la busqueda de sus citas: ")
+        while not self.validaciones_cita.validar_dni(self.dni):
+            self.dni = input('Ingrese un DNI válido (8 dígitos): ')
 
         if self.json_cita.verificar_json(self.dni):
             print(f'El paciente de DNI {self.dni} cuenta con lo siguiente: ')
@@ -123,11 +125,16 @@ class AdministracionCita(MenuAdministracion):
 
     def eliminar(self):
         self.dni = input("Ingrese el DNI del paciente para la busqueda de sus citas: ")
+        while not self.validaciones_cita.validar_dni(self.dni):
+            self.dni = input('Ingrese un DNI válido (8 dígitos): ')
 
         if self.json_cita.verificar_json(self.dni):
             print(f'El paciente de DNI {self.dni} cuenta con lo siguiente: ')
             print(self.json_cita.buscar_datos_json(self.dni))
+            self.citas = self.json_cita.buscar_datos_json(self.dni)
             self.id = input('Ingrese el ID de la cita a archivar: ')
+            while not self.validaciones_cita.validar_id(self.id,self.citas):
+                self.id = input('Ingrese un ID válido: ')
 
             self.json_cita.eliminar_json(self.id)
         else:
