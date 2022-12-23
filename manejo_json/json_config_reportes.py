@@ -26,6 +26,15 @@ class JsonConfigReportes(JsonConfigEntities):
                 json.dump(self.reportes, file, indent=4, ensure_ascii=False)
                 return True
 
+    def asignar_id_json(self):
+        contador = 100
+        if os.stat(self.json_reportes).st_size != 0:
+            with open(self.json_reportes, 'r', encoding='utf-8') as file:
+                data = json.load(file)
+                contador += len(data)
+        reporte_id = 'C' + str(contador)
+        return reporte_id
+    
     def verificar_json(self, dni):
         if os.stat(self.json_reportes).st_size == 0:
             return False

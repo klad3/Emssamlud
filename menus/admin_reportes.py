@@ -18,6 +18,9 @@ class administrar_reportes:
         self.paciente_dni = input("Digite el dni del paciente: ")
         
         if self.json_cita.verificar_json(self.paciente_dni):
+            
+            self.id = self.json_reporte.asignar_id_json()
+            
             print("*****************************************")
             print('Datos: ')
             print(self.mostrar_datos(self.json_paciente.extraer_datos_json(self.paciente_dni)))
@@ -27,8 +30,8 @@ class administrar_reportes:
             self.diagnostico = input("Diagnostico: ")
             
             self.paciente = self.json_paciente.extraer_datos_json(self.paciente_dni)
-            self.reporte = r.Reportes(self.paciente,self.peso,self.talla,self.motivo_cita,self.diagnostico)
-            campos_reporte = [{'paciente':self.reporte.paciente, 'peso' :self.peso, 'talla' :self.talla,'motivo_cita': self.motivo_cita,
+            self.reporte = r.Reportes(self.id,self.paciente,self.peso,self.talla,self.motivo_cita,self.diagnostico)
+            campos_reporte = [{'id':self.reporte.id ,'paciente':self.reporte.paciente, 'peso' :self.peso, 'talla' :self.talla,'motivo_cita': self.motivo_cita,
                         'diagnostico': self.diagnostico}]
         
             if self.json_reporte.registrar_json(campos_reporte):
