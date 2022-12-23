@@ -2,6 +2,7 @@ import validaciones.validaciones_main as v
 from menus.admin_pacientes import AdministracionPaciente
 from menus.admin_personal import AdministracionPersonal
 from menus.admin_citas import AdministracionCita
+from menus.admin_reportes import administrar_reportes
 import sys
 
 class Menu:
@@ -10,6 +11,7 @@ class Menu:
         self.admin_pacientes = AdministracionPaciente()
         self.admin_personal = AdministracionPersonal()
         self.admin_citas = AdministracionCita()
+        self.admin_reportes = administrar_reportes()
     
     def menu_principal(self):
         print('-----------------Sistemas de citas médicas - Emssamlud-----------------')
@@ -28,6 +30,8 @@ class Menu:
             self.menu_administracion()
         elif int(self.opcion_princ) == 2:
             self.admin_citas.menu()
+        elif int(self.opcion_princ) == 3:
+            self.admin_reportes.atencion_cita()
         elif int(self.opcion_princ) == 5:
             print('Hasta luego.')
             sys.exit()
