@@ -38,3 +38,12 @@ class ValidacionAdmCita:
                 return False
         except:
             return False
+
+    def validar_id(self, id, citas):
+        lista_id = []
+        for i in citas:
+            lista_id.append(i['id'])
+        if id in lista_id:
+            return True
+        else:
+            return False

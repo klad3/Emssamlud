@@ -92,8 +92,6 @@ class AdministracionCita(MenuAdministracion):
                         print(f'El médico con DNI {self.dni_medico} no existe.')
             except:
                 print('No hay médicos disponibles en el área indicada.')
-            else:
-                print(f'El área {self.validaciones_medico.especialidad} no ha sido registrada.')
         else:
             print(f'El paciente con DNI {self.dni_paciente} no existe.')
 
@@ -103,13 +101,23 @@ class AdministracionCita(MenuAdministracion):
         if self.json_cita.verificar_json(self.dni):
             print(f'El paciente de DNI {self.dni} cuenta con lo siguiente: ')
             print(self.json_cita.buscar_datos_json(self.dni))
+            self.citas = self.json_cita.buscar_datos_json(self.dni)
             self.id = input('Ingrese el ID de la cita a modificar: ')
+            while not self.validaciones_cita.validar_id(self.id,self.citas):
+                self.id = input('Ingrese un ID válido: ')
             self.area = self.json_cita.buscar_especialidad_json(self.id)
             self.fecha_cita = input('Nueva fecha de la cita: ')
+            while not self.validaciones_cita.validar_fecha_cita(self.fecha_cita):
+                self.fecha_cita = input('Verifique la fecha ingresada (Plazo máximo = 30 días): ')
             self.validaciones_cita.mostrar_ordenado(self.json_personal.buscar_datos_json(self.area, self.fecha_cita))
             self.medico_dni = input('DNI Médico: ')
+            while not self.validaciones_cita.validar_dni(self.medico_dni):
+                self.medico_dni = input('Ingrese un DNI válido (8 dígitos): ')
+            while not self.json_personal.verificar_json(self.medico_dni):
+                self.medico_dni = input('No existe un Médico con el dni escrito, Por favor ingrese un DNI válido (8 dígitos): ')
 
             self.json_cita.modificar_json(self.id, self.fecha_cita, self.medico_dni)
+            print('La cita ha sido modificada con exito')
         else:
             print('Este paciente no tiene citas programadas.')
 
