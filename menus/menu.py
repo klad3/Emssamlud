@@ -3,6 +3,7 @@ from menus.admin_pacientes import AdministracionPaciente
 from menus.admin_personal import AdministracionPersonal
 from menus.admin_citas import AdministracionCita
 from menus.admin_reportes import administrar_reportes
+from menus.admin_facturacion import MenuFacturacion
 import sys
 
 class Menu:
@@ -12,6 +13,7 @@ class Menu:
         self.admin_personal = AdministracionPersonal()
         self.admin_citas = AdministracionCita()
         self.admin_reportes = administrar_reportes()
+        self.admin_facturacion = MenuFacturacion()
     
     def menu_principal(self):
         print('-----------------Sistemas de citas médicas - Emssamlud-----------------')
@@ -20,7 +22,8 @@ class Menu:
         print('2. Administrar citas.')
         print('3. Atender cita.')
         print('4. Reportes.')
-        print('5. Salir.')
+        print('5. Facturacion.')
+        print('6. Salir.')
 
         self.opcion_princ = input('Digite una opción: ')
         while not self.validaciones.validar_opcion_princ(self.opcion_princ):
@@ -33,6 +36,8 @@ class Menu:
         elif int(self.opcion_princ) == 3:
             self.admin_reportes.atencion_cita()
         elif int(self.opcion_princ) == 5:
+            self.admin_facturacion.menu()
+        elif int(self.opcion_princ) == 6:
             print('Hasta luego.')
             sys.exit()
     

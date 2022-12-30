@@ -61,9 +61,11 @@ class JsonConfigCita(JsonConfigEntities):
                     id = data[i]['id']
                     fecha_cita = data[i]['fecha_cita']
                     medico = data[i]['medico']
+                    area = data[i]['area']
+                    nombre = data[i]['paciente']['nombres']
+                    dni = data[i]['paciente']['dni']
 
-
-                    cita = {'id': id, 'fecha_cita': fecha_cita, 'medico': medico}
+                    cita = {'id': id, 'fecha_cita': fecha_cita, 'medico': medico, 'area': area, 'nombre':nombre, 'dni':dni}
                     citas.append(cita)
         return citas
 
